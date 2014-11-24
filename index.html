@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Co-Pilot</title>
+
+	<link rel="stylesheet" href="css/firepad.css" />
+	<link rel="stylesheet" href="css/editor.css" />
+	<link rel="stylesheet" href="css/bootstrap.css" />
+	<link rel="stylesheet" href="css/conejo.css" />
+	<link rel="stylesheet" href="css/inlineDisqussions.css" />
+
+	<script src="https://cdn.firebase.com/js/client/1.0.18/firebase.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="js/ace.js"></script>
+	<script src="js/firepad-min.js"></script>
+	<script src="js/mode-space.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/inlineDisqussions.js"></script>
+	<style>
+		html { 
+			height: 100%; 
+			width: 100%;
+		}
+
+		body { 
+			margin: 0; 
+			height: 100%; 
+			background-color: #CFCFB8;
+		}
+		    
+		#firepad {
+			position: fixed;
+			height: 80%;
+			width: 60%;
+			padding-top: 50px;
+			padding-bottom: 100px;
+			margin-top: 100px;
+			margin-bottom: 100px;
+		}
+
+		.ace_print-margin {
+			display: none;
+		}
+
+		.ace_editor {
+		    position: relative;
+		    overflow: hidden;
+		    font-family: 'Ubuntu Mono', 'Menlo', 'Monaco', 'Consolas', 'source-code-pro', monospace;
+		    font-size: 18px;
+		    color: black;
+		    line-height: normal;
+		    direction: ltr;
+		}
+
+		.ace_fold {
+			display: none !important;
+		}
+	</style>
+</head>
+<body>
+		<div class="row">
+			<div class="col-xs-12">
+				<div id="top-content">
+					<a href="./" id="create-pad" class="sprite-btn"></a>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-2">
+				<div id="title">
+					<h2 style="text-align: center;">Co-Pilot</h2>
+				</div>
+				<div class="well">
+					<p>Organize, brainstorm and share ideas with anyone: coworkers, classmates, friends, or strangers.</p>
+					<p>Everything's <b>live</b>, so collaboration is in real-time.</p>
+					<p>And it's all <a href="#" class="link" data-placement="bottom" data-original-title="Try clicking the arrows next to the text to see what I mean">in outline form</a>, which'll make organizing fast for everyone.</p>
+
+				</div>
+			</div>
+			<div class="col-xs-10">
+				<div id="userList"></div>
+				<div id="firepad"></div>
+			</div>
+		</div>
+	<script>
+		$('.link').tooltip()
+	</script>
+	<script>
+		var firepadRef = new Firebase('http://amber-fire-3122.firebaseIO.com');
+
+		var editor = ace.edit('firepad');
+		editor.setTheme("ace/theme/textmate");
+		editor.getSession().setMode("ace/mode/space");
+		editor.getSession().setUseWrapMode(true);
+		editor.getSession().setWrapLimitRange(60, 60);
+		var firepad = Firepad.fromACE(firepadRef, editor,
+		{});
+
+	</script>
+	<script>
+		var paragraphs = $('.ace_layer.ace_text-layer .ace_line_group');
+	  $(paragraphs).mouseover(function() {
+	  	$(console.log('got it'));
+		});
+	</script>
+</body>
+</html>

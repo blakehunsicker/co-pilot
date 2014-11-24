@@ -1,0 +1,20 @@
+.well {
+	width: 90%;
+	margin: 5% 0 0 30px;
+}
+
+p {
+	font-family: Helvetica;
+	font-size: 16px;
+}
+
+.link,
+.link:hover {
+	color: #FF0000;
+	text-decoration: none;
+}
+
+.red {
+	color: black !important;
+}
+
