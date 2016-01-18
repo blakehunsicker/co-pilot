@@ -113,6 +113,9 @@
           }
           return inputElement;
         }
+        if ($('pre#CodeMirror-line > span span').innerHTML() == $('#')) {
+          $(this).addClass('.firepad-u');
+        };
       });
     }
     // Helper to get hash from end of URL or generate a random one.
