@@ -35,22 +35,6 @@
 <body>
   <div id="firepad-container"></div>
     <script type='text/javascript'>
-      // Create a new Firebase reference, and a new instance of the Login client
-      var chatRef = new Firebase('https://co-pilot.firebaseio.com/chat');
-      chatRef.onAuth(function(authData) {
-      // Once authenticated, instantiate Firechat with our user id and user name
-        if (authData) {
-          var chat = new FirechatUI(chatRef, document.getElementById('firechat-wrapper'));
-          chat.setUser(authData.uid, authData[authData.provider].displayName);
-        }
-      });
-      function login(provider) {
-        chatRef.authWithOAuthPopup(provider, function(error, authData) {
-          if (error) {
-            console.log(error);
-          }
-        });
-      }
 
       function init() {
       //// Initialize Firebase.
@@ -146,6 +130,23 @@
       return ref;
     }
     init();
+
+    // Create a new Firebase reference, and a new instance of the Login client
+      var chatRef = new Firebase('https://co-pilot.firebaseio.com');
+      chatRef.onAuth(function(authData) {
+      // Once authenticated, instantiate Firechat with our user id and user name
+        if (authData) {
+          var chat = new FirechatUI(chatRef, document.getElementById('firechat-wrapper'));
+          chat.setUser(authData.uid, authData[authData.provider].displayName);
+        }
+      });
+      function login(provider) {
+        chatRef.authWithOAuthPopup(provider, function(error, authData) {
+          if (error) {
+            console.log(error);
+          }
+        });
+      }
     </script>
     <div id='firechat-wrapper'>
       <a href='#' onclick='login("twitter");'>Login</a>
