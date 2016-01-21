@@ -123,7 +123,7 @@
     // console.log(document.getElementByClassName('CodeMirror-line').children('span span').text);
     // Helper to get hash from end of URL or generate a random one.
     function getExampleRef() {
-      var ref = new Firebase('https://co-pilot.firebaseio.com');
+      var ref = new Firebase('https://co-pilot.firebaseio.com/posts');
       var hash = window.location.hash.replace(/#/g, '');
       if (hash) {
         ref = ref.child(hash);
